@@ -46,6 +46,13 @@ chmod +x ~/.docker/cli-plugins/docker-compose
 
 docker compose -f docker-compose-image-tag.yml up
 
+# # # Install Metabase, instead of Superset
+
+docker run -d -p 3000:3000 --name metabase metabase/metabase
+
+# Watch startup logs (takes 1-2 minutes to initialize)
+docker logs -f metabase
+
 # # # Open ports to connect from local network
 
 # FastAPI
@@ -58,3 +65,7 @@ sudo ufw allow 15432
 
 # Superset
 sudo ufw allow 8088
+
+# Metabase
+sudo ufw allow 3000
+
